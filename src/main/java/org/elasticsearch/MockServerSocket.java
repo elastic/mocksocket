@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketAddress;
 import java.security.AccessController;
 import java.security.PrivilegedActionException;
 import java.security.PrivilegedExceptionAction;
@@ -49,6 +50,18 @@ public class MockServerSocket extends ServerSocket {
     public Socket accept() throws IOException {
         try {
             return AccessController.doPrivileged((PrivilegedExceptionAction<Socket>) MockServerSocket.super::accept);
+        } catch (PrivilegedActionException e) {
+            throw (IOException) e.getCause();
+        }
+    }
+
+    @Override
+    public void bind(SocketAddress endpoint) throws IOException {
+        try {
+            AccessController.doPrivileged((PrivilegedExceptionAction<Void>) () -> {
+                MockServerSocket.super.bind(endpoint);
+                return null;
+            });
         } catch (PrivilegedActionException e) {
             throw (IOException) e.getCause();
         }
