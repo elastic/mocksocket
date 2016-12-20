@@ -20,7 +20,10 @@
 package org.elasticsearch;
 
 import java.io.IOException;
-import java.net.*;
+import java.net.InetAddress;
+import java.net.Proxy;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.security.AccessController;
 import java.security.PrivilegedActionException;
 import java.security.PrivilegedExceptionAction;
@@ -78,4 +81,5 @@ public class MockSocket extends Socket {
             throw (IOException) e.getCause();
         }
     }
+
 }
