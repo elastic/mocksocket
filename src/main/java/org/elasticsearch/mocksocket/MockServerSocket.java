@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package org.elasticsearch;
+package org.elasticsearch.mocksocket;
 
 import java.io.IOException;
 import java.net.InetAddress;

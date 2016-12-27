@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package org.elasticsearch;
+package org.elasticsearch.mocksocket;
 
 import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpHandler;
