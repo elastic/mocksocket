@@ -25,6 +25,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.security.PrivilegedActionException;
 import java.security.PrivilegedExceptionAction;
 
@@ -65,6 +66,16 @@ public class MockServerSocket extends ServerSocket {
         } catch (PrivilegedActionException e) {
             throw (IOException) e.getCause();
         }
+    }
+
+    @Override
+    public InetAddress getInetAddress() {
+        return AccessController.doPrivileged((PrivilegedAction<InetAddress>) super::getInetAddress);
+    }
+
+    @Override
+    public SocketAddress getLocalSocketAddress() {
+        return AccessController.doPrivileged((PrivilegedAction<SocketAddress>) super::getLocalSocketAddress);
     }
 
 }
