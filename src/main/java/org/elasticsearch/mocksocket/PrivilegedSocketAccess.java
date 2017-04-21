@@ -27,7 +27,9 @@ import java.security.AccessController;
 import java.security.PrivilegedActionException;
 import java.security.PrivilegedExceptionAction;
 
-public class PrivilegedContext {
+public final class PrivilegedSocketAccess {
+
+    private PrivilegedSocketAccess() {}
 
     public static SocketChannel accept(ServerSocketChannel serverSocketChannel) throws IOException {
         try {
